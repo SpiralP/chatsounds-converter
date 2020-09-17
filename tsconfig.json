@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ESNext",
+    "jsx": "react",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "outDir": "dist/server/"
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}
