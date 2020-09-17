@@ -1,5 +1,5 @@
 # Chatsounds converter
 
-https://carbonated-three-daphne.glitch.me/
+https://chatsounds-converter.glitch.me
 
 Converts any audio file into a small ogg with the correct sample rate!
