@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./server.js",
-    "build": "parcel build --no-cache --out-dir public ./client/index.html",
-    "dev": "parcel build --out-dir public ./client/index.html && yarn start"
+    "build": "parcel build --no-cache --out-dir public ./app/index.html",
+    "dev": "parcel build --out-dir public ./app/index.html && yarn start"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.31.0",

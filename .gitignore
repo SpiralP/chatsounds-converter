@@ -1,3 +1,5 @@
+public
+
 # https://github.com/github/gitignore/blob/218a941be92679ce67d0484547e3e142b2f5f6f0/Node.gitignore
 
 # Logs
@@ -118,6 +120,3 @@ dist
 .pnp.*
 
 # End of Node.gitignore
-
-public
-.vercel
