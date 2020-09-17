@@ -115,6 +115,11 @@ export default function App() {
 
   return (
     <div style={{ margin: "24px" }}>
+      <h1>
+        <a href="https://github.com/SpiralP/chatsounds-converter">
+          Chatsounds Converter
+        </a>
+      </h1>
       <FileDropzone stereo={stereo} />
       <br />
       <Checkbox
