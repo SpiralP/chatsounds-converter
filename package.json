@@ -1,6 +1,9 @@
 {
   "name": "chatsounds-converter",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "license": "MIT",
   "scripts": {
     "start": "node ./server.js",
