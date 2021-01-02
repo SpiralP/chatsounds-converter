@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "commonjs",
+    "target": "ESNext",
+    "jsx": "react",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}

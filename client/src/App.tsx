@@ -32,7 +32,7 @@ const rejectStyle = {
   borderColor: "#ff1744",
 };
 
-function FileDropzone({ stereo }) {
+function FileDropzone({ stereo }: { stereo: boolean }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 

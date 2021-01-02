@@ -1,12 +1,13 @@
-const fs = require("fs");
-const express = require("express");
-const ffmpeg = require("fluent-ffmpeg");
-const tmp = require("tmp");
-const pump = require("pump");
+import fs from "fs";
+import path from "path";
+import express from "express";
+import ffmpeg from "fluent-ffmpeg";
+import tmp from "tmp";
+import pump from "pump";
 
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "..", "..", "client", "dist")));
 
 app.post("/convert", async (req, res) => {
   const input = tmp.fileSync();
@@ -15,8 +16,11 @@ app.post("/convert", async (req, res) => {
   try {
     await new Promise((resolve, reject) => {
       pump(req, fs.createWriteStream(input.name), (err) => {
-        if (err) reject(err);
-        else resolve();
+        if (err) {
+          reject(err);
+        } else {
+          resolve(undefined);
+        }
       });
     });
 
@@ -42,13 +46,18 @@ app.post("/convert", async (req, res) => {
     });
 
     console.log("converted succesfully");
-    pump(fs.createReadStream(output.name), res, (err) => {
-      input.removeCallback();
-      output.removeCallback();
 
-      if (err) {
-        reject(err);
-      }
+    await new Promise((resolve, reject) => {
+      pump(fs.createReadStream(output.name), res, (err) => {
+        input.removeCallback();
+        output.removeCallback();
+
+        if (err) {
+          reject(err);
+        } else {
+          resolve(undefined);
+        }
+      });
     });
   } catch (err) {
     console.warn(err.message);
@@ -57,7 +66,13 @@ app.post("/convert", async (req, res) => {
   }
 });
 
-// listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
+const listener = app.listen(process.env.PORT ?? 8080, () => {
+  const address = listener.address();
+  if (!address) throw new Error("??");
+
+  if (typeof address === "string") {
+    console.log("Your app is listening on address " + address);
+  } else {
+    console.log("Your app is listening on port " + address.port);
+  }
 });
