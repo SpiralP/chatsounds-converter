@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./server.js",
-    "build": "shx rm -rf public && parcel build --no-cache --out-dir public ./app/index.html",
+    "build": "rimraf public && parcel build --no-cache --out-dir public ./app/index.html",
     "dev": "parcel build --out-dir public ./app/index.html && yarn start"
   },
   "dependencies": {
@@ -31,7 +31,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/tmp": "^0.2.0",
     "parcel-bundler": "^1.12.4",
-    "shelljs": "^0.8.4",
+    "rimraf": "^3.0.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
   },
