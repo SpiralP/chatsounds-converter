@@ -1,0 +1,17 @@
+{
+  "name": "chatsounds-converter",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "cd server && yarn start",
+    "build:client": "cd client && yarn build",
+    "build:server": "cd server && yarn build",
+    "build": "yarn build:client && yarn build:server",
+    "postinstall": "cd server && yarn"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
