@@ -1,7 +1,8 @@
+const fs = require("fs");
 const express = require("express");
 const ffmpeg = require("fluent-ffmpeg");
 const tmp = require("tmp");
-const fs = require("fs");
+const pump = require("pump");
 
 const app = express();
 
@@ -11,20 +12,17 @@ app.post("/convert", async (req, res) => {
   const input = tmp.fileSync();
   console.log("/convert", input.name);
 
-  await new Promise((resolve, reject) => {
-    req.on("error", reject);
-
-    const s = fs.createWriteStream(input.name);
-    s.on("error", reject);
-    s.on("finish", resolve);
-
-    req.pipe(s);
-  });
-
-  const output = tmp.fileSync();
-  console.log("converting", output.name);
-
   try {
+    await new Promise((resolve, reject) => {
+      pump(req, fs.createWriteStream(input.name), (err) => {
+        if (err) reject(err);
+        else resolve();
+      });
+    });
+
+    const output = tmp.fileSync();
+    console.log("converting", input.name, output.name);
+
     await new Promise((resolve, reject) => {
       ffmpeg(input.name)
         // format      : ogg
@@ -44,15 +42,18 @@ app.post("/convert", async (req, res) => {
     });
 
     console.log("converted succesfully");
-    fs.createReadStream(output.name).pipe(res, { end: true });
+    pump(fs.createReadStream(output.name), res, (err) => {
+      input.removeCallback();
+      output.removeCallback();
+
+      if (err) {
+        reject(err);
+      }
+    });
   } catch (err) {
     console.warn(err.message);
     res.status(500);
     res.send(err.message);
-    res.end();
-  } finally {
-    input.removeCallback();
-    output.removeCallback();
   }
 });
 
