@@ -1,17 +1,13 @@
 {
   "name": "chatsounds-converter",
-  "version": "1.0.0",
-  "engines": {
-    "node": "14.x"
-  },
-  "license": "MIT",
+  "private": true,
   "scripts": {
-    "start": "cd server && npm run start",
-    "build:client": "cd client && npm run build",
-    "build:server": "cd server && npm run build",
-    "build": "npm run build:client && npm run build:server",
-    "postinstall": "cd server && npm install"
+    "start": "yarn workspace chatsounds-converter-server run start",
+    "typecheck": "yarn workspaces run typecheck",
+    "build": "yarn workspaces run build"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "workspaces": [
+    "client",
+    "server"
+  ]
 }
