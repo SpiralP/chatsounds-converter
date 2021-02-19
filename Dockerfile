@@ -1,26 +1,17 @@
-# docker build -t spiralp/chatsounds-converter . && docker push spiralp/chatsounds-converter
+FROM node:alpine
 
-# Use the official lightweight Node.js 12 image.
-# https://hub.docker.com/_/node
-FROM node:14-slim
+USER node
+RUN mkdir /home/node/app
+WORKDIR /home/node/app
 
-# Create and change to the app directory.
-WORKDIR /usr/src/app
-
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
-# Copying this first prevents re-running npm install on every code change.
-COPY package.json yarn.lock ./
-
-# Install production dependencies.
-# If you add a package-lock.json, speed your build by switching to 'npm ci'.
-# RUN npm ci --only=production
+COPY --chown=node:node package.json yarn.lock ./
+COPY --chown=node:node ./client/package.json ./client/package.json
+COPY --chown=node:node ./server/package.json ./server/package.json
 RUN yarn install
 
-# Copy local code to the container image.
-COPY . ./
-
+COPY --chown=node:node . ./
 RUN yarn build
 
-# Run the web service on container startup.
+EXPOSE 80
+ENV PORT=80
 CMD [ "yarn", "start" ]
