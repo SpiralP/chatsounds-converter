@@ -4,6 +4,9 @@ import express from "express";
 import ffmpeg from "fluent-ffmpeg";
 import tmp from "tmp";
 import pump from "pump";
+const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
+
+ffmpeg.setFfmpegPath(ffmpegPath);
 
 const app = express();
 
