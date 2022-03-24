@@ -7,20 +7,19 @@
     "build:dev": "node build.js",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@blueprintjs/core": "^3.31.0",
-    "bluebird": "^3.7.2",
-    "file-saver": "^2.0.5",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-dropzone": "^11.2.4"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@blueprintjs/core": "^3.31.0",
     "@types/bluebird": "^3.5.32",
     "@types/file-saver": "^2.0.1",
-    "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react": "^17.0.0",
+    "bluebird": "^3.7.2",
     "esbuild": "^0.8.49",
+    "file-saver": "^2.0.5",
+    "react-dom": "^17.0.1",
+    "react-dropzone": "^11.2.4",
+    "react": "^17.0.1",
     "typescript": "^4.1.3"
   }
 }
