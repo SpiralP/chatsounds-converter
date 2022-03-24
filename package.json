@@ -3,8 +3,11 @@
   "private": true,
   "scripts": {
     "start": "yarn workspace chatsounds-converter-server run start",
-    "typecheck": "yarn workspaces run typecheck",
-    "build": "yarn workspaces run build"
+    "start:dev": "yarn workspace chatsounds-converter-server run start:dev",
+    "dev": "yarn run typecheck && yarn run build:dev && yarn run start:dev",
+    "build": "yarn workspaces run build",
+    "build:dev": "yarn workspaces run build:dev",
+    "typecheck": "yarn workspaces run typecheck"
   },
   "workspaces": [
     "client",

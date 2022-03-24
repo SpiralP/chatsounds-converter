@@ -4,14 +4,12 @@ USER node
 RUN mkdir /home/node/app
 WORKDIR /home/node/app
 
-COPY --chown=node:node package.json package.json
-COPY --chown=node:node yarn.lock yarn.lock
+COPY --chown=node:node package.json yarn.lock ./
 COPY --chown=node:node client/package.json client/package.json
 COPY --chown=node:node server/package.json server/package.json
 RUN yarn install
 
-COPY --chown=node:node client client
-COPY --chown=node:node server server
+COPY --chown=node:node . .
 RUN yarn build
 
 EXPOSE 8080

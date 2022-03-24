@@ -2,16 +2,22 @@
   "name": "chatsounds-converter-server",
   "version": "1.0.0",
   "scripts": {
-    "start": "node ./dist/index.js",
-    "typecheck": "tsc --noEmit",
-    "build": "node build.js",
-    "dev": "yarn run build && yarn run start"
+    "start:inner": "node -r source-map-support/register ./dist/index.js",
+    "start": "cross-env NODE_ENV=production yarn run start:inner",
+    "start:dev": "cross-env NODE_ENV=development yarn run start:inner",
+    "dev": "yarn run typecheck && yarn run build:dev && yarn run start:dev",
+    "build:inner": "node build.js",
+    "build": "cross-env NODE_ENV=production yarn run build:inner",
+    "build:dev": "cross-env NODE_ENV=development yarn run build:inner",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "fluent-ffmpeg": "^2.1.2",
     "pump": "^3.0.0",
+    "source-map-support": "^0.5.21",
     "tmp": "^0.2.1"
   },
   "devDependencies": {
@@ -19,8 +25,6 @@
     "@types/fluent-ffmpeg": "^2.1.15",
     "@types/pump": "^1.1.0",
     "@types/tmp": "^0.2.0",
-    "esbuild": "^0.8.49",
-    "rimraf": "^3.0.2",
     "typescript": "^4.0.2"
   }
 }
