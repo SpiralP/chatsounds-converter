@@ -7,7 +7,7 @@ require("esbuild").buildSync({
   sourcemap: true,
   minify: production,
   platform: "node",
-  target: "node17",
+  target: "node16",
   format: "cjs",
   external: ["express", "ffmpeg-static", "fluent-ffmpeg", "@ffmpeg-installer"],
 });

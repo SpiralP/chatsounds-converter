@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "yarn run typecheck && yarn run build:dev && yarn run start:dev",
-    "build:inner": "node build.js",
-    "build": "cross-env NODE_ENV=production yarn run build:inner",
-    "build:dev": "cross-env NODE_ENV=development yarn run build:inner",
+    "build": "yarn --production=true run build:dev",
+    "build:dev": "node build.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.31.0",
     "bluebird": "^3.7.2",
-    "cross-env": "^7.0.3",
     "file-saver": "^2.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
