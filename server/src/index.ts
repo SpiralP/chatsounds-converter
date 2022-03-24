@@ -1,9 +1,9 @@
-import fs from "fs";
-import path from "path";
 import express from "express";
 import ffmpeg from "fluent-ffmpeg";
-import tmp from "tmp";
+import fs from "fs";
+import path from "path";
 import pump from "pump";
+import tmp from "tmp";
 const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -62,7 +62,7 @@ app.post("/convert", async (req, res) => {
         }
       });
     });
-  } catch (err) {
+  } catch (err: any) {
     console.warn(err.message);
     res.status(500);
     res.send(err.message);

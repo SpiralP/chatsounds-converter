@@ -4,7 +4,7 @@ require("esbuild").buildSync({
   minify: true,
   sourcemap: true,
   platform: "node",
-  target: ["node10"],
+  target: ["node16"],
   format: "cjs",
   outfile: "dist/index.js",
 });
