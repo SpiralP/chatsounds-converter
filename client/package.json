@@ -1,6 +1,7 @@
 {
   "name": "chatsounds-converter-client",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "dev": "yarn run typecheck && yarn run build:dev && yarn run start:dev",
     "build": "yarn --production=true run build:dev",

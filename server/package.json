@@ -1,6 +1,7 @@
 {
   "name": "chatsounds-converter-server",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "start": "yarn --production=true node -r dotenv/config ./dist/index.js",
     "start:dev": "node -r source-map-support/register -r dotenv/config ./dist/index.js",
