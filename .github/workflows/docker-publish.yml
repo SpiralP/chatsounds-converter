@@ -48,3 +48,13 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Delete old images
+        uses: snok/container-retention-policy@v1
+        with:
+          image-names: ${{ github.event.repository.name }}
+          cut-off: 1 second ago UTC
+          timestamp-to-use: updated_at
+          account-type: personal
+          token: ${{ secrets.TOKEN }}
+          untagged-only: true
