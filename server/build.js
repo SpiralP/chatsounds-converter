@@ -1,4 +1,4 @@
-const NODE_ENV = process.env.NODE_ENV;
+const NODE_ENV = process.env.NODE_ENV || "development";
 
 require("esbuild").buildSync({
   entryPoints: ["src/index.ts"],

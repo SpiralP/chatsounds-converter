@@ -1,8 +1,8 @@
-import FileSaver from "file-saver";
 import { Checkbox } from "@blueprintjs/core";
-import React, { useCallback, useState, useMemo } from "react";
-import { useDropzone } from "react-dropzone";
 import Promise from "bluebird";
+import FileSaver from "file-saver";
+import React, { useCallback, useMemo, useState } from "react";
+import { useDropzone } from "react-dropzone";
 
 const baseStyle: React.CSSProperties = {
   flex: 1,
@@ -36,43 +36,47 @@ function FileDropzone({ stereo }: { stereo: boolean }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
-  const onDrop = useCallback((files: File[]) => {
-    setUploading(true);
+  const onDrop = useCallback(
+    (files: File[]) => {
+      setUploading(true);
 
-    Promise.map(
-      files,
-      async (file) => {
-        const fileName = file.name.replace(/\.[^/.]+$/, "");
+      Promise.map(
+        files,
+        async (file) => {
+          const fileName = file.name.replace(/\.[^/.]+$/, "");
 
-        const response = await fetch(
-          "/convert?stereo=" + (stereo ? "1" : "0"),
-          {
-            method: "POST",
-            body: file,
+          const response = await fetch(
+            "/convert?stereo=" + (stereo ? "1" : "0"),
+            {
+              method: "POST",
+              body: file,
+            }
+          );
+
+          if (response.status === 200) {
+            const blob = await response.blob();
+            if (blob.size !== 0) {
+              FileSaver.saveAs(blob, fileName + ".ogg");
+            }
+          } else {
+            const message = await response.text();
+            console.warn(fileName, message);
+            setError(`Error converting ${fileName}: ${message}`);
           }
-        );
-
-        if (response.status === 200) {
-          const blob = await response.blob();
-          if (blob.size !== 0) {
-            FileSaver.saveAs(blob, fileName + ".ogg");
-          }
-        } else {
-          const message = await response.text();
-          console.warn(fileName, message);
-          setError(`Error converting ${fileName}: ${message}`);
+        },
+        { concurrency: 2 }
+      ).then(
+        () => {
+          setUploading(false);
+        },
+        () => {
+          setUploading(false);
         }
-      },
-      { concurrency: 2 }
-    ).then(
-      () => {
-        setUploading(false);
-      },
-      () => {
-        setUploading(false);
-      }
-    );
-  }, []);
+      );
+    },
+    [stereo]
+  );
+
   const {
     getRootProps,
     getInputProps,
