@@ -1,12 +1,14 @@
 import express from "express";
+import ffmpegPath from "ffmpeg-static";
 import ffmpeg from "fluent-ffmpeg";
 import fs from "fs";
 import path from "path";
 import pump from "pump";
 import tmp from "tmp";
-const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 
-ffmpeg.setFfmpegPath(ffmpegPath);
+if (ffmpegPath) {
+  ffmpeg.setFfmpegPath(ffmpegPath);
+}
 
 const app = express();
 
