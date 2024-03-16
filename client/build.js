@@ -10,6 +10,5 @@ require("esbuild").buildSync({
   target: ["chrome88", "firefox85", "safari14", "edge88"],
   define: {
     "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
-    "process.env": JSON.stringify({ NODE_ENV }),
   },
 });

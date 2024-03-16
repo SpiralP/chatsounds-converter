@@ -24,7 +24,6 @@
                 && (lib.any
                   (re: builtins.match re (lib.removePrefix (builtins.toString ./.) (builtins.toString path)) != null)
                   [
-                    "/build.js"
                     "/client"
                     "/client/.*"
                     "/package-lock.json"

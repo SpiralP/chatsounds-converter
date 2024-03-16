@@ -12,6 +12,5 @@ require("esbuild").buildSync({
   external: ["express", "fluent-ffmpeg"],
   define: {
     "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
-    "process.env": JSON.stringify({ NODE_ENV }),
   },
 });
