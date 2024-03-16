@@ -1,14 +1,11 @@
 import express from "express";
-import ffmpegPath from "ffmpeg-static";
 import ffmpeg from "fluent-ffmpeg";
 import fs from "fs";
 import path from "path";
 import pump from "pump";
 import tmp from "tmp";
 
-if (ffmpegPath) {
-  ffmpeg.setFfmpegPath(ffmpegPath);
-}
+ffmpeg.setFfmpegPath("ffmpeg");
 
 const app = express();
 

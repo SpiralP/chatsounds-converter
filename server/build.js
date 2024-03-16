@@ -9,7 +9,7 @@ require("esbuild").buildSync({
   platform: "node",
   target: "node16",
   format: "cjs",
-  external: ["express", "ffmpeg-static", "fluent-ffmpeg"],
+  external: ["express", "fluent-ffmpeg"],
   define: {
     "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
     "process.env": JSON.stringify({ NODE_ENV }),

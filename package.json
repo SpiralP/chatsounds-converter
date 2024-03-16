@@ -1,6 +1,10 @@
 {
   "name": "chatsounds-converter",
+  "version": "0.1.0",
   "private": true,
+  "bin": {
+    "chatsounds-converter": "./server/dist/index.js"
+  },
   "scripts": {
     "start": "cross-env NODE_ENV=production npm run --workspace chatsounds-converter-server start",
     "start:dev": "npm run --workspace chatsounds-converter-server start:dev",
