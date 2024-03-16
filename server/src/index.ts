@@ -31,6 +31,7 @@ app.post("/convert", async (req, res) => {
 
     await new Promise((resolve, reject) => {
       ffmpeg(input.name)
+        .inputOption(["-hide_banner", "-protocol_whitelist", "file"])
         // format      : ogg
         // ogg quality : ~30% / ~3
         // sample rate : 44.1 kHz
@@ -42,6 +43,12 @@ app.post("/convert", async (req, res) => {
         .audioFrequency(44100)
         .audioChannels(req.query.stereo === "1" ? 2 : 1)
         .noVideo()
+        .on("start", (cmd) => {
+          console.log({ cmd });
+        })
+        .on("stderr", (stderr) => {
+          console.warn(stderr);
+        })
         .on("end", resolve)
         .on("error", reject)
         .save(output.name);
