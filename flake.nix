@@ -35,7 +35,7 @@
                 );
             };
 
-            npmDepsHash = "sha256-GubeCjDw8PdxHPR6yegdrpvSMBvkuQ+KbZOtWIcpvzU=";
+            npmDepsHash = "sha256-s+X8wDu2FSmyVtpT4XpO4nkpeVKX0flutvV6rjOVNq4=";
 
             postInstall = with pkgs; ''
               wrapProgram $out/bin/${meta.mainProgram} \
