@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
   };
 
   outputs = { nixpkgs, ... }:
@@ -16,24 +16,14 @@
         rec {
           default = pkgs.buildNpmPackage rec{
             name = "chatsounds-converter";
-
-            src = lib.cleanSourceWith {
-              src = ./.;
-              filter = path: type:
-                lib.cleanSourceFilter path type
-                && (lib.any
-                  (re: builtins.match re (lib.removePrefix (builtins.toString ./.) (builtins.toString path)) != null)
-                  [
-                    "/client"
-                    "/client/.*"
-                    "/package-lock.json"
-                    "/package.json"
-                    "/server"
-                    "/server/.*"
-                    "/tsconfig.json"
-                  ]
-                );
-            };
+            src = lib.sourceByRegex ./. [
+              "^build\.js$"
+              "^client(/.*)?$"
+              "^package-lock\.json$"
+              "^package\.json$"
+              "^server(/.*)?$"
+              "^tsconfig\.json$"
+            ];
 
             npmDepsHash = "sha256-s+X8wDu2FSmyVtpT4XpO4nkpeVKX0flutvV6rjOVNq4=";
 
