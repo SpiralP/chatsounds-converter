@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "cross-env NODE_ENV=production npm run build:dev",
-    "build:dev": "node build.js",
+    "build:dev": "npm run typecheck && node build.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

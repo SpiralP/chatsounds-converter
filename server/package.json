@@ -7,7 +7,7 @@
     "start:dev": "node -r source-map-support/register -r dotenv/config ./dist/index.js",
     "dev": "npm run typecheck && npm run build:dev && npm run start:dev",
     "build": "cross-env NODE_ENV=production npm run build:dev",
-    "build:dev": "node build.js",
+    "build:dev": "npm run typecheck && node build.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
