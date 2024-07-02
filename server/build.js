@@ -4,6 +4,7 @@ require("esbuild").buildSync({
   entryPoints: ["src/index.ts"],
   outfile: "dist/index.js",
   bundle: true,
+  packages: "bundle",
   sourcemap: true,
   minify: NODE_ENV === "production",
   platform: "node",
