@@ -27,7 +27,7 @@
 
             npmDepsHash = "sha256-ySp1ehPbK1PySf8n5lV8bMGhtKScRDfKNKYmcpPXzLo=";
 
-            postInstall = with pkgs; ''
+            postFixup = with pkgs; ''
               wrapProgram $out/bin/${meta.mainProgram} \
                 --prefix PATH : ${lib.makeBinPath [ ffmpeg ]}
             '';
