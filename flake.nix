@@ -25,7 +25,7 @@
               "^tsconfig\.json$"
             ];
 
-            npmDepsHash = "sha256-iR0dmbfP3+pv2+6vkkJ4iW9yrqhg648x/NduSI++qEM=";
+            npmDepsHash = "sha256-hjQ1VoiLfIkIE3ZKMzwS1heThAO/HIlN6IcZBAH25HI=";
 
             postFixup = with pkgs; ''
               wrapProgram $out/bin/${meta.mainProgram} \
