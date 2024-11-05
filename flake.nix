@@ -3,7 +3,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
   };
 
-  outputs = { nixpkgs, ... }:
+  outputs = { self, nixpkgs }:
     let
       inherit (nixpkgs) lib;
 
@@ -15,7 +15,9 @@
         in
         rec {
           default = pkgs.buildNpmPackage rec{
-            name = "chatsounds-converter";
+            pname = "chatsounds-converter";
+            version = "${self.shortRev or self.dirtyShortRev}";
+
             src = lib.sourceByRegex ./. [
               "^build\.js$"
               "^client(/.*)?$"
