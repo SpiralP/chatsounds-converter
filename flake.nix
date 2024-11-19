@@ -38,8 +38,6 @@
             then [
               ffmpeg
               clippy
-              rustfmt
-              rust-analyzer
             ]
             else [ ];
 
