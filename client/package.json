@@ -11,7 +11,7 @@
     "cross-env": "^7.0.3"
   },
   "devDependencies": {
-    "@blueprintjs/core": "^5.15.0",
+    "@blueprintjs/core": "^5.16.0",
     "@types/bluebird": "^3.5.42",
     "@types/file-saver": "^2.0.7",
     "@types/react": "^18.3.12",
