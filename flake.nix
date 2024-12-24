@@ -14,7 +14,7 @@
           };
         in
         rec {
-          default = pkgs.buildNpmPackage rec{
+          default = pkgs.buildNpmPackage rec {
             pname = "chatsounds-converter";
             version = "${self.shortRev or self.dirtyShortRev}";
 
@@ -27,7 +27,10 @@
               "^tsconfig\.json$"
             ];
 
-            npmDepsHash = "sha256-KCxHh0mDRYlupOKMmHaJdg7jU6dZWP4O1VMm9mlzTiE=";
+            npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+            npmDeps = pkgs.importNpmLock {
+              npmRoot = src;
+            };
 
             postFixup = with pkgs; ''
               wrapProgram $out/bin/${meta.mainProgram} \
