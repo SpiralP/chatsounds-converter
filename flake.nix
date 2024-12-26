@@ -7,6 +7,8 @@
     let
       inherit (nixpkgs) lib;
 
+      nodeManifest = lib.importJSON ./package.json;
+
       makePackage = (system: dev:
         let
           pkgs = import nixpkgs {
@@ -15,8 +17,8 @@
         in
         rec {
           default = pkgs.buildNpmPackage rec {
-            pname = "chatsounds-converter";
-            version = "${self.shortRev or self.dirtyShortRev}";
+            pname = nodeManifest.name;
+            version = "${nodeManifest.version}-${self.shortRev or self.dirtyShortRev}";
 
             src = lib.sourceByRegex ./. [
               "^build\.js$"
