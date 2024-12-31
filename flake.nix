@@ -9,6 +9,9 @@
 
       nodeManifest = lib.importJSON ./package.json;
 
+      revSuffix = lib.optionalString (self ? shortRev || self ? dirtyShortRev)
+        "-${self.shortRev or self.dirtyShortRev}";
+
       makePackage = (system: dev:
         let
           pkgs = import nixpkgs {
@@ -18,7 +21,7 @@
         rec {
           default = pkgs.buildNpmPackage rec {
             pname = nodeManifest.name;
-            version = "${nodeManifest.version}-${self.shortRev or self.dirtyShortRev}";
+            version = nodeManifest.version + revSuffix;
 
             src = lib.sourceByRegex ./. [
               "^build\.js$"
