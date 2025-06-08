@@ -57,6 +57,7 @@ app.post("/convert", async (req, res) => {
     console.log("converted succesfully");
 
     await new Promise((resolve, reject) => {
+      res.type("audio/ogg");
       pump(fs.createReadStream(output.name), res, (err) => {
         input.removeCallback();
         output.removeCallback();
