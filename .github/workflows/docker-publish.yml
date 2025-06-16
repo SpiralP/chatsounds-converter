@@ -54,9 +54,9 @@ jobs:
       - name: Delete old images
         uses: snok/container-retention-policy@4f22ef80902ad409ed55a99dc5133cc1250a0d03 # v3.0.0
         with:
+          account: user
+          cut-off: 1s
           image-names: ${{ github.event.repository.name }}
-          cut-off: 1 second ago UTC
+          tag-selection: untagged
           timestamp-to-use: updated_at
-          account-type: personal
           token: ${{ secrets.TOKEN }}
-          untagged-only: true
