@@ -52,7 +52,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Delete old images
-        uses: snok/container-retention-policy@b56f4ff7539c1f94f01e5dc726671cd619aa8072 # v2.2.1
+        uses: snok/container-retention-policy@4f22ef80902ad409ed55a99dc5133cc1250a0d03 # v3.0.0
         with:
           image-names: ${{ github.event.repository.name }}
           cut-off: 1 second ago UTC
