@@ -1,4 +1,4 @@
-FROM node:lts-alpine@sha256:edaff7359149b451922a1ec148ceeba6cc8ba20411235f782f16329f41fe37e6 AS builder
+FROM node:lts-alpine@sha256:5539840ce9d013fa13e3b9814c9353024be7ac75aca5db6d039504a56c04ea59 AS builder
 
 USER node
 RUN mkdir /home/node/app
@@ -13,7 +13,7 @@ COPY --chown=node:node . .
 RUN npm run build
 
 
-FROM node:lts-alpine@sha256:edaff7359149b451922a1ec148ceeba6cc8ba20411235f782f16329f41fe37e6
+FROM node:lts-alpine@sha256:5539840ce9d013fa13e3b9814c9353024be7ac75aca5db6d039504a56c04ea59
 
 USER node
 RUN mkdir /home/node/app
