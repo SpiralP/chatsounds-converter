@@ -15,7 +15,7 @@
     "@blueprintjs/icons": "5.23.0",
     "@types/bluebird": "3.5.42",
     "@types/file-saver": "2.0.7",
-    "@types/react": "18.3.23",
+    "@types/react": "18.3.24",
     "@types/react-dom": "18.3.7",
     "bluebird": "3.7.2",
     "esbuild": "0.25.9",
