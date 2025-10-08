@@ -25,6 +25,6 @@
     "pump": "3.0.3",
     "source-map-support": "0.5.21",
     "tmp": "0.2.5",
-    "typescript": "5.9.2"
+    "typescript": "5.9.3"
   }
 }
