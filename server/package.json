@@ -24,7 +24,7 @@
     "esbuild": "0.27.5",
     "pump": "3.0.4",
     "source-map-support": "0.5.21",
-    "tmp": "0.2.5",
+    "tmp": "0.2.6",
     "typescript": "5.9.3"
   }
 }
