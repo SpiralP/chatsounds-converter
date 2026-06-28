@@ -8,7 +8,7 @@ require("esbuild").buildSync({
   sourcemap: true,
   minify: NODE_ENV === "production",
   platform: "browser",
-  target: ["chrome88", "firefox85", "safari14", "edge88"],
+  target: "es2023",
   define: {
     "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
   },
